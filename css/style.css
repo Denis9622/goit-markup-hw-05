@@ -573,6 +573,7 @@ h2 {
 }
 .iconformfoot {
   fill: #ffffff;
+  margin-left: 16px;
 }
 /*#endregion*/
 /*#region modal*/
@@ -581,10 +582,12 @@ h2 {
   height: 100%; /*ханимает всю область*/
   position: fixed; /*бекдроп при скрили всегда будет на месте*/
   top: 0; /*прибитий до верху*/
-  background-color: rgba(30, 24, 35, 0.615);
+  background-color: rgba(46, 47, 66, 0.4);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1); /*для плавної зміни прозорості і видимості елемента*/
 }
 
 .modal {
@@ -599,22 +602,27 @@ h2 {
     -50%,
     -50%
   ); /*посунути вліво на половину себе і вверх на половину себе*/
-  padding: 24px;
+  padding: 72px 24px 24px 24px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2); /*для визначення тіні для елемента*/
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1); /*що дозволяє задавати анімаційний ефект для зміни значень властивостей стилю*/
 }
 .modal-field {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 .modal-close-btn {
-  margin-left: auto; /*отступ слева авто*/
+  position: absolute; /*становлює позиції елемента відносно його батьківського елемента*/
+  top: 24px; /* для визначення відстані від верхнього краю батьківського елементу до верхнього краю кнопки*/
+  right: 24px; /* для визначення відстані від правого краю батьківського елементу до правого краю кнопки*/
   width: 24px;
   height: 24px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: #e7e9fc;
   border-radius: 50%;
-  padding: 0; /*у кнопок по умолчанию есть падинг нужно скинуть*/
+  padding: 0; /* для обнулення дефолтних відступів, які елемент має від браузера*/
   display: flex; /*делает все елементі не вітянутіми*/
-  align-items: center;
-  justify-content: center;
+  align-items: center; /*для вирівнювання дочірнього елемента по вертикалі*/
+  justify-content: center; /*для вирівнювання дочірнього елемента по горизонталі*/
   cursor: pointer;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     border 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -645,7 +653,7 @@ h2 {
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1); /* для плавної зміни кольору*/
 }
 
 .modal-input:hover + .modal-icon-input {
@@ -654,7 +662,12 @@ h2 {
 .modal-input:hover {
   border-color: #4d5ae5;
 }
-
+.modal-input:focus {
+  border-color: #4d5ae5;
+}
+.modal-input:focus + .modal-icon-input {
+  fill: #4d5ae5;
+}
 .modal-title {
   text-align: center;
   margin-top: 24px;
@@ -696,14 +709,18 @@ h2 {
   border: 1px solid rgba(46, 47, 66, 0.4);
   color: rgba(46, 47, 66, 0.4);
   background-color: transparent;
-  resize: none;
+  resize: none; /*для заборони зміни розміру елемента*/
   font-size: 12px;
   font-weight: 400;
   line-height: 1.17;
   letter-spacing: 0.04em;
   padding: 8px 16px; /*отступы ввода текста*/
+  outline: transparent; /*для встановлення стилю контуру для елемента*/
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1); /*що дозволяє задавати анімаційний ефект для зміни значень властивостей стилю*/
 }
-
+.blok-comment:focus {
+  border-color: #4d5ae5;
+}
 .blok-comment::placeholder {
   color: rgba(46, 47, 66, 0.4); /*задать прозрачность*/
 }
@@ -717,6 +734,9 @@ h2 {
   justify-content: center;
   align-items: center;
   fill: transparent;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .priv_pol {
   color: #4d5ae5;
@@ -737,6 +757,15 @@ h2 {
   margin: 0 auto;
   margin-top: 24px;
   padding: 16px 32px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.accept-block {
+  margin-bottom: 24px;
+}
+.accept-input:checked + label span {
+  fill: #f4f4fd;
+  background-color: #404bbf;
+  border: none;
 }
 .is-open {
   opacity: 1;
