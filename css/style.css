@@ -610,6 +610,9 @@ h2 {
 .modal-field {
   margin-bottom: 8px;
 }
+.modal-field-fix{
+    margin-bottom: 16px;
+}
 .modal-close-btn {
   position: absolute; /*становлює позиції елемента відносно його батьківського елемента*/
   top: 24px; /* для визначення відстані від верхнього краю батьківського елементу до верхнього краю кнопки*/
